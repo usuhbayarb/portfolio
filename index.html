@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Б. Өсөхбаяр — Вэбсайт, апп хийнэ</title>
+<meta name="description" content="Вэбсайт, захиалгын систем, мобайл апп хийдэг програм хангамжийн инженер. Улаанбаатар.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+
+<!--
+  ЗАСАХ ЗҮЙЛС:
+  1. Доорх script доторх CONTACT хэсэгт утас, Instagram, Facebook линкээ бичнэ.
+  2. Дэлгүүрийн аппын тайлбарыг (#p-shop) шаардлагатай бол засна.
+  3. Төсөл бүрийн "link" дээр жинхэнэ линкээ тавина (байхгүй бол хоосон үлдээж болно).
+-->
+
+<style>
+:root{
+  --bg:#f6f4ef; --surface:#ffffff; --text:#151515; --muted:#5d5b56; --line:#dcd8cf;
+  --accent:#1d6b4f; --accent-soft:#e3efe9;
+  --head:'Unbounded',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#121311; --surface:#1b1c1a; --text:#efede8; --muted:#a3a09a; --line:#2e2f2c;
+    --accent:#5fc49b; --accent-soft:#1d2b25;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+html[lang="mn"] .en, html[lang="en"] .mn{display:none}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+section{padding:88px 0;border-top:1px solid var(--line)}
+h1,h2,h3{font-family:var(--head);font-weight:700;line-height:1.15;letter-spacing:-.01em}
+h2{font-size:clamp(26px,4vw,38px);margin-bottom:12px}
+.lead{color:var(--muted);max-width:620px;margin-bottom:44px}
+.label{font-size:13px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;display:block}
+
+/* nav */
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.logo{font-family:var(--head);font-weight:700;text-decoration:none;font-size:18px}
+.links{display:flex;gap:22px;font-size:14px}
+.links a{text-decoration:none;color:var(--muted)}
+.links a:hover{color:var(--text)}
+.nav-right{display:flex;gap:10px;align-items:center}
+.lang{border:1px solid var(--line);background:none;color:var(--text);border-radius:20px;padding:5px 12px;font:600 13px var(--body);cursor:pointer}
+.btn{display:inline-block;background:var(--text);color:var(--bg);text-decoration:none;border-radius:24px;padding:9px 18px;font-size:14px;font-weight:600}
+.btn.ghost{background:none;color:var(--text);border:1px solid var(--line)}
+@media (max-width:760px){.links{display:none}.nav-right .btn{display:none}}
+
+/* hero */
+.hero{padding:96px 0 72px;border:0}
+.hero h1{font-size:clamp(38px,8vw,84px);text-transform:uppercase;margin-bottom:22px}
+.hero h1 span.small{display:block;font-size:.42em;color:var(--muted);text-transform:none;font-weight:500;margin-top:14px}
+.hero p{font-size:clamp(17px,2vw,20px);max-width:640px;color:var(--muted);margin-bottom:32px}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:14px;margin-bottom:28px;background:var(--accent-soft);color:var(--accent);padding:6px 12px;border-radius:20px;font-weight:600}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+
+/* ticker */
+.ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;white-space:nowrap}
+.ticker div{display:inline-block;animation:run 30s linear infinite;font-family:var(--head);font-size:15px;color:var(--muted)}
+.ticker b{color:var(--accent);margin:0 18px;font-weight:500}
+@keyframes run{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ticker div{animation:none}}
+
+/* services */
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+@media (max-width:860px){.g3{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.g3,.g2{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px}
+.card h3{font-size:17px;margin-bottom:8px}
+.card p{color:var(--muted);font-size:15px}
+.num{font-family:var(--head);color:var(--accent);font-size:14px;margin-bottom:14px;display:block}
+
+/* projects */
+.project{display:grid;grid-template-columns:90px 1fr auto;gap:24px;padding:30px 0;border-bottom:1px solid var(--line);align-items:start}
+.project:first-of-type{border-top:1px solid var(--line)}
+.project .idx{font-family:var(--head);color:var(--muted)}
+.project h3{font-size:22px;margin-bottom:6px}
+.project .type{font-size:13px;color:var(--accent);font-weight:600;margin-bottom:10px;display:block}
+.project p{color:var(--muted);max-width:620px;margin-bottom:14px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{font-size:12.5px;border:1px solid var(--line);border-radius:20px;padding:3px 10px;color:var(--muted)}
+.project a.go{font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap}
+.project a.go:hover{color:var(--accent)}
+@media (max-width:700px){.project{grid-template-columns:1fr;gap:8px}}
+
+/* why */
+.why{background:var(--text);color:var(--bg);border:0}
+.why .lead{color:color-mix(in srgb,var(--bg) 70%,var(--text))}
+.why .label{color:var(--accent)}
+.why .card{background:transparent;border-color:color-mix(in srgb,var(--bg) 22%,var(--text))}
+.why .card p{color:color-mix(in srgb,var(--bg) 72%,var(--text))}
+.fit{margin-top:40px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.fit strong{margin-right:6px;font-size:15px}
+.fit > span{border:1px solid color-mix(in srgb,var(--bg) 30%,var(--text));border-radius:20px;padding:5px 13px;font-size:14px}
+
+/* skills */
+.skill h3{font-size:15px;margin-bottom:10px}
+.skill p{font-size:15px;color:var(--muted)}
+
+/* experience */
+.tl{border-left:2px solid var(--line);padding-left:24px}
+.tl div{position:relative;padding-bottom:32px}
+.tl div::before{content:"";position:absolute;left:-31px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.tl small{color:var(--muted);font-size:14px}
+.tl h3{font-size:17px;margin:4px 0}
+.tl p{color:var(--muted);font-size:15px;max-width:620px}
+
+/* contact */
+.contact h2{font-size:clamp(30px,6vw,60px);margin-bottom:20px}
+.clist{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:36px;border-top:1px solid var(--line)}
+.clist a,.clist div{display:flex;justify-content:space-between;padding:18px 4px;border-bottom:1px solid var(--line);text-decoration:none;gap:12px}
+.clist small{color:var(--muted)}
+.clist a:hover b{color:var(--accent)}
+@media (max-width:600px){.clist{grid-template-columns:1fr}}
+footer{padding:28px 0 40px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo">UB.</a>
+    <div class="links">
+      <a href="#services"><span class="mn">Үйлчилгээ</span><span class="en">Services</span></a>
+      <a href="#work"><span class="mn">Хийсэн ажил</span><span class="en">Work</span></a>
+      <a href="#why"><span class="mn">Яагаад сайт хэрэгтэй</span><span class="en">Why a website</span></a>
+      <a href="#about"><span class="mn">Миний тухай</span><span class="en">About</span></a>
+      <a href="#contact"><span class="mn">Холбогдох</span><span class="en">Contact</span></a>
+    </div>
+    <div class="nav-right">
+      <button class="lang" id="lang">EN</button>
+      <a href="#contact" class="btn"><span class="mn">Холбогдох ↗</span><span class="en">Let's talk ↗</span></a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="status"><i></i><span class="mn">Шинэ захиалга авч байна</span><span class="en">Taking new projects</span></div>
+    <h1><span class="mn">Б. Өсөхбаяр</span><span class="en">Usukhbayar B.</span>
+      <span class="small"><span class="mn">Програм хангамжийн инженер</span><span class="en">Software Engineer</span></span>
+    </h1>
+    <p>
+      <span class="mn">Танай бизнесийн онлайн туслах.</span>
+      <span class="en">Your business's online helper.</span>
+    </p>
+    <div class="actions">
+      <a href="#work" class="btn"><span class="mn">Хийсэн ажлууд</span><span class="en">See my work</span></a>
+      <a href="#contact" class="btn ghost"><span class="mn">Холбогдох</span><span class="en">Get in touch</span></a>
+    </div>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true">
+  <div id="tick"><span class="mn">Вэбсайт <b>✦</b> Онлайн захиалга <b>✦</b> QPay төлбөр <b>✦</b> Утасны апп <b>✦</b> QR цэс <b>✦</b> Автоматжуулалт <b>✦</b> Дизайн <b>✦</b> </span><span class="en">Websites <b>✦</b> Online booking <b>✦</b> QPay payments <b>✦</b> Phone apps <b>✦</b> QR menus <b>✦</b> Automation <b>✦</b> Design <b>✦</b> </span></div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <span class="label"><span class="mn">Үйлчилгээ</span><span class="en">Services</span></span>
+    <h2><span class="mn">Би юу хийж өгөх вэ</span><span class="en">What I can make for you</span></h2>
+    <p class="lead"></p>
+    <div class="grid g3">
+      <div class="card"><span class="num">01</span>
+        <h3><span class="mn">Вэбсайт</span><span class="en">Website</span></h3>
+        <p><span class="mn">Танай бизнесийн тухай, үнэ, байршил, утасны дугаар нэг дор. Утаснаас ч, компьютерээс ч гоё харагдана.</span><span class="en">Your business info, prices, location and phone number in one place. Looks good on phones and computers.</span></p></div>
+      <div class="card"><span class="num">02</span>
+        <h3><span class="mn">Онлайн захиалга</span><span class="en">Online booking</span></h3>
+        <p><span class="mn">Үйлчлүүлэгч утсаараа цаг, ширээ захиалчихна. Хэн хэдэн цагт ирэхийг та нэг дороос харна.</span><span class="en">Customers book a time or table from their phone. You see who's coming and when, in one place.</span></p></div>
+      <div class="card"><span class="num">03</span>
+        <h3><span class="mn">Онлайн төлбөр</span><span class="en">Online payment</span></h3>
+        <p><span class="mn">QPay, картаар шууд төлдөг болно. Мөнгө орсон эсэхийг гараар шалгах шаардлагагүй.</span><span class="en">Customers pay by QPay or card. No more checking by hand whether the money came in.</span></p></div>
+      <div class="card"><span class="num">04</span>
+        <h3><span class="mn">Утасны апп</span><span class="en">Phone app</span></h3>
+        <p><span class="mn">Android, iPhone хоёуланд нь ажилладаг танай өөрийн апп.</span><span class="en">Your own app that works on both Android and iPhone.</span></p></div>
+      <div class="card"><span class="num">05</span>
+        <h3><span class="mn">Удирдлагын хэсэг</span><span class="en">Owner's panel</span></h3>
+        <p><span class="mn">Өнөөдөр хэдэн захиалга орсон, хэдэн төгрөгийн орлого орсныг утаснаасаа харна.</span><span class="en">See today's orders and income right from your phone.</span></p></div>
+      <div class="card"><span class="num">06</span>
+        <h3><span class="mn">Автоматжуулалт</span><span class="en">Automation</span></h3>
+        <p><span class="mn">Гэрэл асаах, цаг тооцох гэх мэт хүн гараар хийдэг ажлыг систем өөрөө хийдэг болно.</span><span class="en">Jobs like switching lights on or tracking time get done by the system, not by staff.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="work">
+  <div class="wrap">
+    <span class="label"><span class="mn">Хийсэн ажил</span><span class="en">Work</span></span>
+    <h2><span class="mn">Хийсэн ажлууд</span><span class="en">Projects</span></h2>
+    <p class="lead"></p>
+
+    <article class="project">
+      <div class="idx">/01</div>
+      <div>
+        <h3>MonJoy Billiard</h3>
+        <span class="type"><span class="mn">Биллиардын газрын систем · 3 салбар</span><span class="en">Billiard club system · 3 branches</span></span>
+        <p><span class="mn">3 салбартай биллиардын газарт вэбсайт, захиалгын систем хийсэн. Үйлчлүүлэгч ширээгээ онлайнаар захиалж, QPay эсвэл картаар төлнө. Ширээн дээрх QR кодыг утсаараа уншуулаад хоол, ундаа захиална. Тоглосон минутаар нь төлбөр өөрөө бодогдож, ширээний гэрэл өөрөө асаж унтардаг. Тэмцээний бүртгэл, онооны жагсаалт, байнгын үйлчлүүлэгчийн хөнгөлөлт ч бий.</span><span class="en">Website and booking system for a billiard club with 3 branches. Customers book a table online and pay by QPay or card. They scan the QR code on the table to order food and drinks. Playing time is billed by the minute automatically, and table lights switch on and off by themselves. It also has tournament sign-ups, a ranking table and regular-customer discounts.</span></p>
+        <div class="tags"><span><span class="mn">Онлайн захиалга</span><span class="en">Online booking</span></span><span>QPay</span><span><span class="mn">QR цэс</span><span class="en">QR menu</span></span><span><span class="mn">Автомат гэрэл</span><span class="en">Auto lights</span></span><span><span class="mn">Тэмцээн</span><span class="en">Tournaments</span></span></div>
+      </div>
+      <a class="go" href="#" data-link="monjoy"><span class="mn">Үзэх ↗</span><span class="en">View ↗</span></a>
+    </article>
+
+    <article class="project">
+      <div class="idx">/02</div>
+      <div>
+        <h3>UA Global</h3>
+        <span class="type"><span class="mn">Үл хөдлөх хөрөнгийн компанийн сайт</span><span class="en">Real estate company website</span></span>
+        <p><span class="mn">Гадаадад амьдардаг монголчууд Монголоос байр авахад тусалдаг компанийн сайт. Монгол, англи хэлтэй. Зарагдаж буй байрнууд, сард хэдэн төгрөг төлөхөө тооцож үзэх хэсэг, Zoom эсвэл WhatsApp-аар зөвлөгөө авах цаг захиалах хэсэгтэй.</span><span class="en">Website for a company that helps Mongolians living abroad buy apartments in Mongolia. In Mongolian and English. Shows available apartments, lets you work out your monthly payment, and book a call on Zoom or WhatsApp.</span></p>
+        <div class="tags"><span><span class="mn">2 хэлтэй</span><span class="en">2 languages</span></span><span><span class="mn">Байрны зар</span><span class="en">Listings</span></span><span><span class="mn">Төлбөр тооцоолох</span><span class="en">Payment calculator</span></span><span><span class="mn">Цаг захиалга</span><span class="en">Call booking</span></span></div>
+      </div>
+      <a class="go" href="https://uaglobal.mn" target="_blank" rel="noopener">uaglobal.mn ↗</a>
+    </article>
+
+    <article class="project" id="p-shop">
+      <div class="idx">/03</div>
+      <div>
+        <h3><span class="mn">Онлайн дэлгүүрийн апп</span><span class="en">Online Shop App</span></h3>
+        <span class="type"><span class="mn">Утасны апп</span><span class="en">Phone app</span></span>
+        <p><span class="mn">Дэлгүүрийн өөрийн утасны апп. Худалдан авагч бараагаа үзэж, хайж, сагсандаа хийгээд захиалгаа өгнө. Ингэснээр хүмүүс Facebook-ээр бичиж асуух хэрэггүй, шууд захиалдаг болно. Android, iPhone хоёуланд нь ажиллана.</span><span class="en">A shop's own phone app. Shoppers browse and search products, add them to a cart and place an order — no need to message the shop on Facebook. Works on Android and iPhone.</span></p>
+        <div class="tags"><span>Android</span><span>iPhone</span><span><span class="mn">Сагс</span><span class="en">Cart</span></span><span><span class="mn">Захиалга</span><span class="en">Orders</span></span></div>
+      </div>
+      <a class="go" href="https://github.com/usuhbayarb" target="_blank" rel="noopener">GitHub ↗</a>
+    </article>
+
+    <article class="project">
+      <div class="idx">/04</div>
+      <div>
+        <h3><span class="mn">Mezorn дээр хийсэн апп-ууд</span><span class="en">Apps built at Mezorn</span></h3>
+        <span class="type"><span class="mn">Утасны апп</span><span class="en">Phone apps</span></span>
+        <p><span class="mn">Mezorn компанид утасны апп хөгжүүлэгчээр ажиллахдаа хийсэн. Нэгж хөрвүүлдэг апп, цаг агаарын апп. Цаг агаарын аппыг илүү найдвартай ажилладаг болгож сайжруулсан.</span><span class="en">Made while working as a mobile developer at Mezorn: a unit converter app and a weather app, which I reworked to run more reliably.</span></p>
+        <div class="tags"><span>Android</span><span>iPhone</span><span>Flutter</span></div>
+      </div>
+      <a class="go" href="https://github.com/usuhbayarb/weather_app" target="_blank" rel="noopener">GitHub ↗</a>
+    </article>
+  </div>
+</section>
+
+<!-- WHY WEB -->
+<section class="why" id="why">
+  <div class="wrap">
+    <span class="label"><span class="mn">Бизнес эрхлэгчдэд</span><span class="en">For business owners</span></span>
+    <h2><span class="mn">Өөрийн сайттай байх яагаад хэрэгтэй вэ?</span><span class="en">Why have your own website?</span></h2>
+    <p class="lead"><span class="mn">Олон бизнес зөвхөн Facebook пейжээр ажилладаг. Өөрийн сайт, систем байвал юу өөрчлөгдөхийг доор бичлээ.</span><span class="en">Many businesses only use a Facebook page. Here's what changes with your own site.</span></p>
+    <div class="grid g3">
+      <div class="card"><span class="num">01</span>
+        <h3><span class="mn">Шөнө ч захиалга авна</span><span class="en">Orders even at night</span></h3>
+        <p><span class="mn">Утас авах, чат хариулах хүн хэрэггүй. Үйлчлүүлэгч өөрөө захиалаад, өөрөө төлчихнө.</span><span class="en">No one has to answer the phone or chat. Customers book and pay by themselves.</span></p></div>
+      <div class="card"><span class="num">02</span>
+        <h3><span class="mn">Алдаа гарахгүй</span><span class="en">Fewer mistakes</span></h3>
+        <p><span class="mn">Төлбөр, цаг, тооцоо өөрөө бүртгэгдэнэ. Кассчин буруу бичих, мартах асуудал гарахгүй.</span><span class="en">Payments and time are recorded automatically. No cashier typos or forgotten entries.</span></p></div>
+      <div class="card"><span class="num">03</span>
+        <h3><span class="mn">Хүмүүс итгэнэ</span><span class="en">People trust you</span></h3>
+        <p><span class="mn">Хүмүүс шинэ газар очихоосоо өмнө интернетээс хайж үздэг. Үнэ, байршил, зураг нь тодорхой байвал итгэж ирнэ.</span><span class="en">People look you up before visiting. Clear prices, location and photos bring them in.</span></p></div>
+      <div class="card"><span class="num">04</span>
+        <h3><span class="mn">Мэдээлэл тань алга болохгүй</span><span class="en">Your data stays yours</span></h3>
+        <p><span class="mn">Үйлчлүүлэгчийн жагсаалт, захиалгын түүх танд хадгалагдана. Пейж хаагдсан ч алга болохгүй.</span><span class="en">Your customer list and order history are kept for you, even if your page gets closed.</span></p></div>
+      <div class="card"><span class="num">05</span>
+        <h3><span class="mn">Орлогоо тоогоор харна</span><span class="en">See your numbers</span></h3>
+        <p><span class="mn">Аль цагт хүн их ирдэг, юу хамгийн их зарагддаг, хэн байнга ирдгийг харж болно.</span><span class="en">See your busiest hours, best sellers and who keeps coming back.</span></p></div>
+      <div class="card"><span class="num">06</span>
+        <h3><span class="mn">Байнгын үйлчлүүлэгчтэй болно</span><span class="en">More regulars</span></h3>
+        <p><span class="mn">Оноо цуглуулах, гишүүнчлэл, хөнгөлөлт хийж үйлчлүүлэгчээ дахин ирүүлнэ.</span><span class="en">Points, memberships and discounts that bring customers back.</span></p></div>
+    </div>
+    <div class="fit">
+      <strong><span class="mn">Ялангуяа тохиромжтой:</span><span class="en">Great for:</span></strong>
+      <span><span class="mn">Салон, гоо сайхан</span><span class="en">Salons</span></span>
+      <span><span class="mn">Кафе, ресторан</span><span class="en">Cafés &amp; restaurants</span></span>
+      <span><span class="mn">Биллиард, караоке</span><span class="en">Billiards &amp; karaoke</span></span>
+      <span><span class="mn">Фитнес</span><span class="en">Gyms</span></span>
+      <span><span class="mn">Сургалтын төв</span><span class="en">Training centers</span></span>
+      <span><span class="mn">Шүдний эмнэлэг</span><span class="en">Dental clinics</span></span>
+      <span><span class="mn">Үл хөдлөх</span><span class="en">Real estate</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section>
+  <div class="wrap">
+    <span class="label"><span class="mn">Ажлын явц</span><span class="en">How it works</span></span>
+    <h2><span class="mn">Хэрхэн ажилладаг вэ</span><span class="en">How we work together</span></h2>
+    <p class="lead"></p>
+    <div class="grid g2">
+      <div class="card"><span class="num">01</span><h3><span class="mn">Уулзаж ярилцана</span><span class="en">We talk</span></h3><p><span class="mn">Танай бизнес яаж ажилладаг, юунд хамгийн их цаг ордгийг сонсоно.</span><span class="en">I listen to how your business works and what takes up your time.</span></p></div>
+      <div class="card"><span class="num">02</span><h3><span class="mn">Загвар үзүүлнэ</span><span class="en">I show a draft</span></h3><p><span class="mn">Хийхээсээ өмнө ямар харагдахыг үзүүлээд, таны санааг авна.</span><span class="en">You see how it will look before I build it.</span></p></div>
+      <div class="card"><span class="num">03</span><h3><span class="mn">Хийнэ</span><span class="en">I build it</span></h3><p><span class="mn">Явцыг байнга үзүүлж, засах зүйл байвал тухай бүрт нь засна.</span><span class="en">I show progress along the way and fix things as we go.</span></p></div>
+      <div class="card"><span class="num">04</span><h3><span class="mn">Хүлээлгэж өгнө</span><span class="en">Handover</span></h3><p><span class="mn">Сайтыг интернетэд гаргаж, ажилчдад тань хэрхэн ашиглахыг зааж өгнө. Дараа нь асуудал гарвал тусална.</span><span class="en">I put it online, teach your staff how to use it, and help if anything comes up later.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <span class="label"><span class="mn">Миний тухай</span><span class="en">About me</span></span>
+    <h2><span class="mn">Боловсрол, туршлага</span><span class="en">Education &amp; experience</span></h2>
+    <p class="lead"></p>
+    <div class="tl">
+      <div><small><span class="mn">Одоо</span><span class="en">Now</span></small>
+        <h3>MonJoy Billiard</h3>
+        <p><span class="mn">Систем, вэбсайт, маркетинг, тэмцээн зохион байгуулалтыг хариуцдаг.</span><span class="en">In charge of the system, website, marketing and tournaments.</span></p></div>
+      <div><small>2026</small>
+        <h3><span class="mn">UA Global — Вэб хөгжүүлэгч</span><span class="en">UA Global — Web Developer</span></h3>
+        <p><span class="mn">Компанийн монгол, англи хэлтэй вэбсайтыг хийсэн.</span><span class="en">Built the company's Mongolian/English website.</span></p></div>
+      <div><small>2026</small>
+        <h3><span class="mn">Mezorn — Утасны апп хөгжүүлэгч</span><span class="en">Mezorn — Mobile Developer</span></h3>
+        <p><span class="mn">Android, iPhone апп хөгжүүлсэн.</span><span class="en">Built Android and iPhone apps.</span></p></div>
+      <div><small><span class="mn">Төгссөн</span><span class="en">Graduated</span></small>
+        <h3><span class="mn">МУИС — Програм хангамж</span><span class="en">National University of Mongolia — Software Engineering</span></h3>
+        <p><span class="mn">Програм хангамжийн инженер мэргэжлээр төгссөн.</span><span class="en">Bachelor's degree in Software Engineering.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <span class="label"><span class="mn">Ашигладаг зүйлс</span><span class="en">Tools</span></span>
+    <h2><span class="mn">Технологи</span><span class="en">Tech I use</span></h2>
+    <p class="lead"></p>
+    <div class="grid g3">
+      <div class="card skill"><h3><span class="mn">Утасны апп</span><span class="en">Phone apps</span></h3><p>Flutter, Dart</p></div>
+      <div class="card skill"><h3><span class="mn">Вэбсайт</span><span class="en">Websites</span></h3><p>HTML, CSS, JavaScript</p></div>
+      <div class="card skill"><h3><span class="mn">Сервер</span><span class="en">Server</span></h3><p>Java, Spring Boot</p></div>
+      <div class="card skill"><h3><span class="mn">Төлбөр, холболт</span><span class="en">Payments</span></h3><p>QPay, POS, QR</p></div>
+      <div class="card skill"><h3><span class="mn">Дизайн</span><span class="en">Design</span></h3><p>Figma, <span class="mn">постер</span><span class="en">posters</span></p></div>
+      <div class="card skill"><h3><span class="mn">Бусад</span><span class="en">Other</span></h3><p>Git, GitHub</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <span class="label"><span class="mn">Холбогдох</span><span class="en">Contact</span></span>
+    <h2><span class="mn">Танай бизнест<br>сайт хэрэгтэй юу?</span><span class="en">Does your business<br>need a website?</span></h2>
+    <p class="lead"><span class="mn">Залгах эсвэл чатаар бичээрэй. Анхны зөвлөгөө үнэгүй.</span><span class="en">Call or message me. The first consultation is free.</span></p>
+    <div class="clist" id="clist"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 <span class="mn">Б. Өсөхбаяр · Улаанбаатар</span><span class="en">Usukhbayar B. · Ulaanbaatar</span></span>
+    <a href="#top"><span class="mn">Дээш буцах ↑</span><span class="en">Back to top ↑</span></a>
+  </div>
+</footer>
+
+<script>
+/* ===== ЭНД ӨӨРИЙН МЭДЭЭЛЛЭЭ БИЧНЭ ===== */
+const CONTACT = {
+  email:     "buyantogtokhusukhbayar@gmail.com",
+  phone:     "+976 8868 2569",
+  github:    "https://github.com/usuhbayarb",
+  instagram: "https://www.instagram.com/b_usuhbayarn/",
+  facebook:  "https://www.facebook.com/usuhbayarn/"
+};
+const LINKS = {
+  monjoy: "https://monjoy-demo.netlify.app/",
+};
+/* ===================================== */
+
+const list = document.getElementById('clist');
+const rows = [
+  ['<span class="mn">Имэйл</span><span class="en">Email</span>', CONTACT.email, 'mailto:' + CONTACT.email],
+  ['<span class="mn">Утас</span><span class="en">Phone</span>', CONTACT.phone, 'tel:' + CONTACT.phone.replace(/\s/g,'')],
+  ['Instagram', '@b_usuhbayarn ↗', CONTACT.instagram],
+  ['Facebook', 'usuhbayarn ↗', CONTACT.facebook],
+  ['GitHub', 'github.com/usuhbayarb ↗', CONTACT.github],
+  ['<span class="mn">Байршил</span><span class="en">Location</span>', '<span class="mn">Улаанбаатар</span><span class="en">Ulaanbaatar</span>', null]
+];
+rows.forEach(([k, v, href]) => {
+  const el = document.createElement(href ? 'a' : 'div');
+  if (href) { el.href = href; if (href.startsWith('http')) { el.target = '_blank'; el.rel = 'noopener'; } }
+  el.innerHTML = `<small>${k}</small><b>${v}</b>`;
+  list.appendChild(el);
+});
+
+document.querySelectorAll('[data-link]').forEach(a => {
+  const url = LINKS[a.dataset.link];
+  if (url === "") a.style.display = 'none';
+  else if (url) { a.href = url; a.target = '_blank'; a.rel = 'noopener'; }
+});
+
+// ticker давхарлах
+const t = document.getElementById('tick'); t.innerHTML += t.innerHTML;
+
+// хэл солих
+const btn = document.getElementById('lang');
+function setLang(l){
+  document.documentElement.lang = l;
+  btn.textContent = l === 'mn' ? 'EN' : 'MN';
+  try { localStorage.setItem('lang', l); } catch(e){}
+}
+let saved = 'mn'; try { saved = localStorage.getItem('lang') || 'mn'; } catch(e){}
+setLang(saved);
+btn.onclick = () => setLang(document.documentElement.lang === 'mn' ? 'en' : 'mn');
+</script>
+</body>
+</html>
